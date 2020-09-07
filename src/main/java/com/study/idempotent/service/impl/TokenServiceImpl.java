@@ -70,13 +70,13 @@ public class TokenServiceImpl implements TokenService {
         }
 
         if (!jedisUtil.exists(token)) {
-            throw new ServiceException(ResponseCode.REPETITIVE_OPERATION.getMsg());
+            throw new ServiceException("是重复接口！！");
         }
 
-//        Long del = jedisUtil.del(token);
-//        if (del<= 0) {
-//            throw new ServiceException(ResponseCode.REPETITIVE_OPERATION.getMsg());
-//        }
+        Long del = jedisUtil.del(token);
+        if (del<= 0) {
+            throw new ServiceException(ResponseCode.REPETITIVE_OPERATION.getMsg());
+        }
         return true;
     }
 }
